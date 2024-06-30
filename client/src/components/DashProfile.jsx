@@ -48,11 +48,12 @@ setImageFileUplaodError(null)
         console.log("uploading ....");
        const storage =  getStorage(app);
 
-       const fileName = new Date().getTime()+imageFile+name; 
+       const fileName = new Date().getTime()+imageFile.name; 
        const storageRef = ref(storage,fileName);
        const uploadTask = uploadBytesResumable(storageRef,imageFile);
        uploadTask.on('state_changed',(snapshot)=>{
         const progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+        console.log(progress,snapshot.bytesTransferred,snapshot.totalBytes,progress.toFixed(0))
         setImageFileUplaodProgress(progress.toFixed(0))
        },
        (error)=>{
