@@ -1,54 +1,52 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const userRoutes = require("./routes/user.route");
-const authRoutes = require("./routes/auth.route");
-const postRoutes = require("./routes/post.route");
-const commentRoutes = require("./routes/comment.route");
-const connectDB = require("./dbConfig/connectDb");
-const cookieParser = require("cookie-parser");
+const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const userRoutes = require('./routes/user.route');
+const authRoutes = require('./routes/auth.route');
+const postRoutes = require('./routes/post.route');
+const commentRoutes = require('./routes/comment.route');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 
 dotenv.config();
+
+mongoose
+  .connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('MongoDb is connected');
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+const __dirname = path.resolve();
+
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(cookieParser());
 app.use(express.json());
+app.use(cookieParser());
 
-// Routes
-app.use("/api/user", userRoutes);
-app.use("/api/auth", authRoutes);
-app.use("/api/post", postRoutes);
-app.use("/api/comment", commentRoutes);
+app.listen(3000, () => {
+  console.log('Server is running on port 3000!');
+});
 
-// Serve static files (assuming client/dist folder)
-app.use(express.static(path.join(__dirname, 'client', 'dist')));
+app.use('/api/user', userRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/post', postRoutes);
+app.use('/api/comment', commentRoutes);
 
-// Serve index.html for any other requests
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
 
-// Error handling middleware
-app.use((error, req, res, next) => {
-  const statusCode = error.statusCode || 500;
-  const message = error.message || "Internal Server Error";
-  
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Internal Server Error';
   res.status(statusCode).json({
     success: false,
-    message
+    statusCode,
+    message,
   });
-});
-
-// Start server and connect to database
-app.listen(PORT, async () => {
-  try {
-    await connectDB();
-    console.log("Connected to database successfully");
-    console.log(`Server is running on http://localhost:${PORT}`);
-  } catch (error) {
-    console.error("Error connecting to database:", error.message);
-  }
 });
