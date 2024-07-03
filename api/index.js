@@ -7,7 +7,7 @@ const postRoutes = require('./routes/post.route');
 const commentRoutes = require('./routes/comment.route');
 const cookieParser = require('cookie-parser');
 const path = require('path');
-const connectDb=require('./config/db.js')
+const connectDB=require('./config/connectDb.js')
 
 dotenv.config();
 
@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 app.listen(3000, () => {
   try{
-    connectDb();
+    connectDB();
     console.log('Server is running on port 3000!');
   }catch(error){
     console.log(error)
