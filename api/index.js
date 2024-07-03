@@ -2,9 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/user.route");
-const authRoutes = require('./routes/auth.route');
-const postRoutes = require('./routes/post.route');
-const commentRoutes = require('./routes/comment.route');
+const authRoutes = require("./routes/auth.route");
+const postRoutes = require("./routes/post.route");
+const commentRoutes = require("./routes/comment.route");
 const connectDB = require("./dbConfig/connectDb");
 const cookieParser = require("cookie-parser");
 const path = require('path');
@@ -20,15 +20,15 @@ app.use(express.json());
 // Routes
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
-app.use('/api/post', postRoutes);
-app.use('/api/comment', commentRoutes);
+app.use("/api/post", postRoutes);
+app.use("/api/comment", commentRoutes);
 
-// Static files (assuming client/dist folder)
-app.use(express.static(path.join(__dirname, 'mern-blog', 'client', 'dist')));
+// Serve static files (assuming client/dist folder)
+app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
 // Serve index.html for any other requests
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'mern-blog', 'client', 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
 
 // Error handling middleware
@@ -46,7 +46,8 @@ app.use((error, req, res, next) => {
 app.listen(PORT, async () => {
   try {
     await connectDB();
-    console.log("Server is running on port " + PORT);
+    console.log("Connected to database successfully");
+    console.log(`Server is running on http://localhost:${PORT}`);
   } catch (error) {
     console.error("Error connecting to database:", error.message);
   }
