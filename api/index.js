@@ -7,7 +7,7 @@ const postRoutes = require('./routes/post.route');
 const commentRoutes = require('./routes/comment.route');
 const cookieParser = require('cookie-parser');
 const path = require('path');
-const connectDB=require('./dbconfig/connectDb.js')
+const connectDB=require('./dbConfig/connectDb.js')
 
 dotenv.config();
 
