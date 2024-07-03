@@ -7,17 +7,10 @@ const postRoutes = require('./routes/post.route');
 const commentRoutes = require('./routes/comment.route');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const connectDb=require('./config/db.js')
 
 dotenv.config();
 
-mongoose
-  .connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log('MongoDb is connected');
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 
 
@@ -27,7 +20,13 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.listen(3000, () => {
-  console.log('Server is running on port 3000!');
+  try{
+    connectDb();
+    console.log('Server is running on port 3000!');
+  }catch(error){
+    console.log(error)
+  }
+  ;
 });
 
 app.use('/api/user', userRoutes);
