@@ -3,6 +3,8 @@ const { mongoose } = require("mongoose");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/user.route");
 const authRoutes = require('./routes/auth.route');
+const postRoutes = require('./routes/post.route');
+const commentRoutes = require('./routes/comment.route');
 const connectDB = require("./dbConfig/connectDb");
 const cookieParser = require("cookie-parser");
 dotenv.config();
@@ -12,6 +14,8 @@ app.use(cookieParser());
 app.use(express.json())
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use('/api/post', postRoutes);
+app.use('/api/comment', commentRoutes);
 
 app.listen(3000, () => {
   try {

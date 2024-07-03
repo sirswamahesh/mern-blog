@@ -286,8 +286,8 @@ export default function DashProfile() {
       )}
       <Modal show={showModal} onClose={() => setShowModal(false)}>
         <ModalHeader />
-        <ModalBody>
-          <div className="text-center ">
+        <ModalBody >
+          <div className="text-center">
             <HiOutlineExclamationCircle
               className="w-14 h-14 text-gray-400 mb-5 mx-auto  dark:text-gray-200"
               color=""
