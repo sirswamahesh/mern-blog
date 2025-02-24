@@ -22,14 +22,7 @@ export default function FooterCom() {
               <Footer.Title title='About' />
               <Footer.LinkGroup col>
                 <Footer.Link
-                  href='https://www.100jsprojects.com'
-                  target='_blank'
-                >
-                  100 JS Projects
-                </Footer.Link>
-                <Footer.Link
                   href='/about'
-                  target='_blank'
                 >
                   Hunting Blog
                 </Footer.Link>
@@ -44,14 +37,12 @@ export default function FooterCom() {
                 >
                   Github
                 </Footer.Link>
-                <Footer.Link href='#'>Discord</Footer.Link>
               </Footer.LinkGroup>
             </div>
             <div>
               <Footer.Title title='Legal' />
               <Footer.LinkGroup col>
                 <Footer.Link href='#'>Privacy Policy</Footer.Link>
-                <Footer.Link href='#'>Terms &amp; Conditions</Footer.Link>
               </Footer.LinkGroup>
             </div>
           </div>
@@ -64,9 +55,7 @@ export default function FooterCom() {
             year={new Date().getFullYear()}
           />
           <div className="flex gap-6 sm:mt-0 mt-4 sm:justify-center">
-            <Footer.Icon href='#' icon={BsFacebook}/>
-            <Footer.Icon href='#' icon={BsInstagram}/>
-            <Footer.Icon href='#' icon={BsTwitter}/>
+            <Footer.Icon href='https://www.instagram.com/mahesh_sirswa/' icon={BsInstagram}/>
             <Footer.Icon href='https://github.com/sirswamahesh' icon={BsGithub}/>
 
           </div>

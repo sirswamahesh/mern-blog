@@ -56,26 +56,8 @@ export default function DashProfile() {
     }
   }, [imageFile]);
   const uploadImage = () => {
-    // rules_version = '2';
-
-    // Craft rules based on data in your Firestore database
-    // allow write: if firestore.get(
-    //    /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
-    // service firebase.storage {
-    //   match /b/{bucket}/o {
-    //     match /{allPaths=**} {
-    //       allow read;
-    //        allow write: if
-    //        request.resource.size < 2*1024 *1024 &&
-    //        request.resource.contentType.matches('image/.*')
-
-    //     }
-    //   }
-
-    // }
     setImageUploading(true);
     setImageFileUplaodError(null);
-    console.log("uploading ....");
     const storage = getStorage(app);
 
     const fileName = new Date().getTime() + imageFile.name;
@@ -86,12 +68,6 @@ export default function DashProfile() {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(
-          progress,
-          snapshot.bytesTransferred,
-          snapshot.totalBytes,
-          progress.toFixed(0)
-        );
         setImageFileUplaodProgress(progress.toFixed(0));
       },
       (error) => {

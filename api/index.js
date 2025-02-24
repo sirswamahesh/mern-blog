@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const userRoutes = require('./routes/user.route');
 const authRoutes = require('./routes/auth.route');
@@ -10,10 +9,6 @@ const path = require('path');
 const connectDB=require('./dbConfig/connectDb.js')
 
 dotenv.config();
-
-
-
-
 const app = express();
 
 app.use(express.json());

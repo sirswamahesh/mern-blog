@@ -15,6 +15,7 @@ import UpdatePost from "./pages/UpdatePost";
 import PostPage from "./pages/PostPage";
 import ScrollToTop from "./components/ScrollToTop";
 import Search from "./pages/Search";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 const App = () => {
   return (
     <BrowserRouter>
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/create-post" element={<CreatePost />} />
           <Route path='/update-post/:postId' element={<UpdatePost />} />
         </Route>
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/projects" element={<Projects />} />
         <Route path='/post/:postSlug' element={<PostPage />} />
         <Route path="/sign-in" element={<SignIn />} />
