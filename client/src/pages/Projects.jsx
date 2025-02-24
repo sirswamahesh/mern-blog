@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import CallToAction from '../components/CallToAction';
 import { motion } from 'framer-motion';
 import PostCard from '../components/PostCard';
-import { Link } from 'react-router-dom';
 
 const Projects = () => {
   const [posts, setPosts] = useState([]);
@@ -51,7 +50,7 @@ const Projects = () => {
       </motion.section>
 
       <motion.div 
-        className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'
+        className='max-w-8xl mx-auto p-3 flex flex-col gap-8 py-7'
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
