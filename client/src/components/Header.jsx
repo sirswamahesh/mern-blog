@@ -13,11 +13,11 @@ export default function Header() {
   const { theme } = useSelector((state) => state.theme);
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-    const searchTermFromUrl = urlParams.get('searchTerm');
+    const searchTermFromUrl = urlParams.get("searchTerm");
     if (searchTermFromUrl) {
       setSearchTerm(searchTermFromUrl);
     }
@@ -26,26 +26,26 @@ export default function Header() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const urlParams = new URLSearchParams(location.search);
-    urlParams.set('searchTerm', searchTerm);
+    urlParams.set("searchTerm", searchTerm);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   };
 
   const handleSignout = async () => {
-      try {
-        const res = await fetch("/api/user/signout", {
-          method: "POST",
-        });
-        const data = await res.json();
-        if (!res.ok) {
-          console.log(data.message);
-        } else {
-          dispatch(signoutSuccess());
-        }
-      } catch (error) {
-        console.log(error);
+    try {
+      const res = await fetch("/api/user/signout", {
+        method: "POST",
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(signoutSuccess());
       }
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Navbar className="border-b-2">
       <Link
@@ -53,12 +53,12 @@ export default function Header() {
         className=" text-sm sm:text-xl font-semibold dark:text-white"
       >
         <span className="px-2 py-1 bg-gradient-to-r from-indigo-500  via-purple-500 to-pink-500 rounded-lg text-white">
-          Hunting
+          MyGreed
         </span>
         Blog
       </Link>
 
-      <form  onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <TextInput
           type="text"
           placeholder="search..."
